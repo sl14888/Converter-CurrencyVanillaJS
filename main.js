@@ -6,6 +6,28 @@ fetch('https://www.cbr-xml-daily.ru/daily_json.js')
     console.log(data);
   });
 
+async function getProducts() {
+  const response = await fetch('./js/products.json');
+  const productsArray = await response.json();
+  renderProducts(productsArray);
+}
+
+function calcCartPrice() {
+  const cartItems = document.querySelectorAll('.cart-item');
+  const totalPriceEl = document.querySelector('.total-price');
+
+  let totalPrice = 0;
+
+  cartItems.forEach(function (item) {
+    const amountEl = item.querySelector('[data-counter]');
+    const priceEl = item.querySelector('.price__currency');
+
+    const currentPrice = parseInt(amountEl.innerText) * parseInt(priceEl.innerText);
+    totalPrice += currentPrice;
+  });
+  totalPriceEl.innerText = totalPrice;
+}
+
 // заносим в глобальный массив
 const rates = {};
 // поиск карточек
@@ -70,16 +92,6 @@ async function getCurrencies() {
     elemGBP.classList.remove('top');
   }
 }
-
-getCurrencies();
-getCurrencies();
-getCurrencies();
-getCurrencies();
-getCurrencies();
-getCurrencies();
-getCurrencies();
-getCurrencies();
-getCurrencies();
 
 input.oninput = convertValue;
 select.oninput = convertValue;
