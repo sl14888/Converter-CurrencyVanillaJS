@@ -71,6 +71,16 @@ async function getCurrencies() {
   }
 }
 
+getCurrencies();
+getCurrencies();
+getCurrencies();
+getCurrencies();
+getCurrencies();
+getCurrencies();
+getCurrencies();
+getCurrencies();
+getCurrencies();
+
 input.oninput = convertValue;
 select.oninput = convertValue;
 
